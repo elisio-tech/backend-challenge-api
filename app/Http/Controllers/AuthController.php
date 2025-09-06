@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use App\Traits\HttpResponses;
-use Illuminate\Http\Request;  
+use Illuminate\Http\Request;   
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     use HttpResponses;
-
 
     public function register(StoreUserRequest $request)
     {
@@ -23,13 +22,10 @@ class AuthController extends Controller
         ]);
 
         // Retorno com token de autenticação
- return $this->success([
-    'id'    => $user->id,
-    'name'  => $user->name,
-    'email' => $user->email,
-    'token' => $user->createToken('Token do user ' . $user->name)->plainTextToken,
-]);
-
+        return $this->success([
+            'name'  => $user->name,
+            'token' => $user->createToken('Token do user ' . $user->name)->plainTextToken,
+        ]);
     }
 
     public function login(Request $request)
