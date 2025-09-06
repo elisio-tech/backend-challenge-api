@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Models\User;
 
+// public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
 
-//testando rota users
-Route::get('/users', function(){
-    return User::all();
+// private routes
+Route::middleware('auth:sanctum')->group(function () {
+    Route::delete('logout', [AuthController::class, 'logout']);
+   
 });
