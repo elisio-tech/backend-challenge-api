@@ -23,7 +23,7 @@ class AuthController extends Controller
 
         // Retorno com token de autenticação
         return $this->success([
-            'name'  => $user->name,
+            'user'  => $user,
             'token' => $user->createToken('Token do user ' . $user->name)->plainTextToken,
         ]);
     }
