@@ -20,7 +20,8 @@ class AuthController extends Controller
         $user = User::create([
             'name'     => $request->name,
             'email'    => $request->email,
-            'password' => Hash::make($request->password)
+            'role'     => $request->role ?? 'user',
+            'password' => Hash::make($request->password) // torna password segura
         ]);
 
         // Retorno com token de autenticação
