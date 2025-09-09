@@ -22,7 +22,4 @@ Route::middleware('auth:sanctum')->group(function () {
     // CANDIDATURA
     Route::get('/candidaturas', [ApplicationController::class, 'index']);    
     Route::post('/candidaturas', [ApplicationController::class, 'store']);
-    // Candidatura de um unico usario
-    Route::get('/candidaturas/{id}', [ApplicationController::class, 'view']);
-
 });
