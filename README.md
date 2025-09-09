@@ -1,61 +1,112 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+  <br />
+    <a href="https://laravel.com" target="_blank">
+      <img src="https://laravel.com/img/logomark.min.svg" alt="Laravel Logo" width="120">
+    </a>
+  <br />
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+  <div>
+    <img src="https://img.shields.io/badge/-Laravel-black?style=for-the-badge&logo=laravel&logoColor=white&color=FF2D20" alt="Laravel" />
+    <img src="https://img.shields.io/badge/-PHP_8.3+-black?style=for-the-badge&logo=php&logoColor=white&color=777BB4" alt="PHP" />
+    <img src="https://img.shields.io/badge/-PostgreSQL-black?style=for-the-badge&logo=postgresql&logoColor=white&color=4169E1" alt="PostgreSQL" />
+    <img src="https://img.shields.io/badge/-MySQL-black?style=for-the-badge&logo=mysql&logoColor=white&color=4479A1" alt="MySQL" />
+    <img src="https://img.shields.io/badge/-Sanctum-black?style=for-the-badge&logo=laravel&logoColor=white&color=FF2D20" alt="Sanctum" />
+  </div>
 
-## About Laravel
+  <h3 align="center">📌 Mini Plataforma de Inscrições & Seleção (API)</h3>
+  <p align="center">
+    API desenvolvida em Laravel para gerir Programas, Candidatos e Candidaturas, com autenticação via Sanctum.
+  </p>
+</div>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Desafio Técnico - Plataforma de Inscrições & Seleção
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Bem-vindo(a) ao repositório do projeto de API para uma plataforma de Inscrições & Seleção. Este projeto foi desenvolvido como parte de um desafio técnico para uma vaga de Backend Developer (Laravel).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+A API permite a gestão de Programas, Candidatos e Candidaturas, seguindo as regras de negócio e os requisitos técnicos especificados.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Requisitos do Projeto
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* **Backend:** Laravel (versão 11/12)
+* **Linguagem:** PHP 8.3+
+* **Autenticação:** Laravel Sanctum
+* **Banco de Dados:** PostgreSQL (configurável para MySQL)
+* **Documentação:** Postman Collection
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+### Funcionalidades Implementadas
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+A API oferece os seguintes endpoints, com suas respectivas regras de negócio e validações:
 
-### Premium Partners
+* **Autenticação (`/api/login`, `/api/register`, `/api/logout`)**:
+    * Registro de novos usuários (candidatos) com validação de e-mail único.
+    * Login de usuários e emissão de tokens de acesso usando Laravel Sanctum.
+    * Logout para revogar o token de acesso atual.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+* **Gestão de Programas (`/api/programas`)**:
+    * Endpoints para listar, visualizar, criar, atualizar e deletar programas.
+    * CRUD completo para a gestão dos programas (restrito a usuários com privilégio de `admin`).
 
-## Contributing
+* **Gestão de Candidaturas (`/api/candidaturas`)**:
+    * Listagem de todas as candidaturas.
+    * Submissão de candidaturas com validação de regras de negócio:
+        * O candidato precisa estar autenticado.
+        * O programa deve estar ativo e dentro do período de datas de inscrição (`start_date` ≤ hoje ≤ `end_date`).
+        * Um candidato não pode se candidatar ao mesmo programa mais de uma vez.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+### Instalação e Configuração
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Siga estes passos para configurar e executar o projeto em sua máquina local.
 
-## Security Vulnerabilities
+#### 1. Clonar o Repositório
+```bash
+git clone git@github.com:elisio-tech/backend-challenge-api.git
+cd  backend-challenge-api
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### 2. Configurar variaveis de ambiente
+	*Copie para .env:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=inscricao_api
+DB_USERNAME=root
+DB_PASSWORD=password_api
+```
 
-## License
+#### Como Testar a API
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+A documentação da API está disponível no formato Postman Collection.
+
+### 1. Importar a Coleção do Postman
+
+Importe o arquivo collection.json para o Postman. Este arquivo contém todos os endpoints e exemplos de requisição.
+
+### 2. Credenciais de Teste
+
+Após rodar os seeds, você terá os seguintes usuários de demonstração no banco de dados:
+
+    Usuário Administrador:
+
+        Email: admin@gmail.com
+
+        Senha: admin12@
+
+    Usuário Candidato:
+
+        Email: brunofernando@gmail.com
+
+        Senha: bruno1234
+
+### Use as credenciais de admin para testar os endpoints de Programas e as credenciais de user para testar a submissão de candidaturas.
+
+### Contato
+
+Desenvolvido por: Elisio Augusto || E-mail: elisiouiux@gmail.com || GitHub: https://github.com/elisio-tech/ ##Agradeço a oportunidade de participar deste desafio.
+
+

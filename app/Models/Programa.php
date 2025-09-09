@@ -15,6 +15,6 @@ class Programa extends Model
     // Um programa pode ter varias candidaturas
     public function cadidaturas()
     {
-        return $this->hasMany(Candidatura::class, 'programa_id');
+        return $this->hasMany(Candidatura::class, 'program_id');
     }
 }

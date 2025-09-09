@@ -15,7 +15,7 @@ class ProgramController extends Controller
 
     /**
      * Retorna todos os programas cadastrados.
-     * GET /programas
+     * Endpoint GET /programas
     */
     public function index()
     {
@@ -25,7 +25,7 @@ class ProgramController extends Controller
 
     /**
      * Retorna um unico programa pelo id
-     * GET /programa/{id}
+     * Endpoint GET /programa/{id}
     */
     public function show(string $id)
     {
@@ -48,7 +48,7 @@ class ProgramController extends Controller
 
     /**
      * Cria um novo programa.
-     * POST /novo-programa
+     * Endpoint POST /novo-programa
      * Apenas admins tem a permissão.
     */
     public function store(ProgramRequest $request)
@@ -68,7 +68,7 @@ class ProgramController extends Controller
 
     /** 
      * Atualiza um programa pelo ID
-     * POST /programa/{id}
+     * Endpoint POST /programa/{id}
      * Apenas admins tem permissão. 
     */
     public function update(UpdateProgramRequest $request, string $id)
@@ -94,7 +94,7 @@ class ProgramController extends Controller
 
     /**
      * Deleta um programa pelo ID.
-     * DELETE /programa/{id}
+     * Endpoint DELETE /programa/{id}
      * Somente admins podem deletar.
     */
     public function destroy(string $id)

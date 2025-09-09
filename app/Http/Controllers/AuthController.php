@@ -14,42 +14,52 @@ class AuthController extends Controller
 {
     use HttpResponses;
 
+    /**
+     * Registro de novos usuários
+     * Endpoint: POST /register
+     * - Cria um novo usuário no sistema.
+     * - O campo `role` é opcional, caso não seja enviado assume "user".
+    */
     public function register(StoreUserRequest $request)
     {
-        // Criar usuário
         $user = User::create([
             'name'     => $request->name,
             'email'    => $request->email,
-            'role'     => $request->role ?? 'user',
-            'password' => Hash::make($request->password) // torna password segura
+            'role'     => $request->role ?? 'user', // role padrão caso não informado
+            'password' => Hash::make($request->password)
         ]);
 
-        // Retorno com token de autenticação
         return $this->success([
             'user'  => $user,
             'token' => $user->createToken('Token do usuario ' . $user->name)->plainTextToken
         ]);
     }
 
+    /**
+     * Autenticação de usuário (login)
+     * Endpoint: POST /login
+    */
     public function login(LoginUserRequest $request)
     {
-        // Verifica credenciais
         if (!Auth::attempt($request->only('email', 'password'))) {
             return $this->error(null, 'Email incorreto ou senha inválida', 401);
         }
 
         $user = User::where('email', $request->email)->first();
 
-        // Retorno user com token de autenticação
         return $this->success([
             'user'  => $user,
             'token' => $user->createToken('Token do usuario ' . $user->name)->plainTextToken
         ]);
     }
 
+    /**
+     * Logout do usuário autenticado
+     * Endpoint: POST /logout
+     * - Revoga apenas o token da sessão atual do usuário.
+    */
     public function logout(Request $request)
     {
-        // Revoga apenas o token atual do usuário
         $request->user()->currentAccessToken()->delete();
         return $this->success(null, 'Logout realizado com sucesso', 200);
     }
