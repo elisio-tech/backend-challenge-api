@@ -1,0 +1,128 @@
+{
+  "info": {
+    "name": "Backend Challenge API",
+    "_postman_id": "b8f52b6a-1234-4567-89ab-abcdef123456",
+    "description": "Coleção Postman para testar a API de Candidaturas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/vnd.api+json" }
+            ],
+            "url": { "raw": "{{base_url}}/api/register", "host": ["{{base_url}}"], "path": ["api", "register"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bruno Fernando\",\n  \"email\": \"brunofernando@gmail.com\",\n  \"password\": \"bruno1234\",\n  \"password_confirmation\": \"bruno1234\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/vnd.api+json" }
+            ],
+            "url": { "raw": "{{base_url}}/api/login", "host": ["{{base_url}}"], "path": ["api", "login"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"brunofernando@gmail.com\",\n  \"password\": \"bruno1234\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/api/logout", "host": ["{{base_url}}"], "path": ["api", "logout"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Programas (admin)",
+      "item": [
+        {
+          "name": "Listar Programas",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/api/programas", "host": ["{{base_url}}"], "path": ["api", "programas"] }
+          }
+        },
+        {
+          "name": "Criar Programa",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+              { "key": "Content-Type", "value": "application/vnd.api+json" }
+            ],
+            "url": { "raw": "{{base_url}}/api/novo-programa", "host": ["{{base_url}}"], "path": ["api", "novo-programa"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Programa Desenvolvedores 2025\",\n  \"descricao\": \"Seleção para novos desenvolvedores\",\n  \"data_inicio\": \"2025-09-05\",\n  \"data_fim\": \"2025-09-20\",\n  \"estado\": \"ativo\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Ver Programa",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/api/programa/1", "host": ["{{base_url}}"], "path": ["api", "programa", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Candidaturas",
+      "item": [
+        {
+          "name": "Listar Candidaturas",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/api/candidaturas", "host": ["{{base_url}}"], "path": ["api", "candidaturas"] }
+          }
+        },
+        {
+          "name": "Submeter Candidatura",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/vnd.api+json" }
+            ],
+            "url": { "raw": "{{base_url}}/api/candidaturas", "host": ["{{base_url}}"], "path": ["api", "candidaturas"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"programa_id\": 1\n}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:8000" },
+    { "key": "token", "value": "" },
+    { "key": "admin_token", "value": "" }
+  ]
+}
