@@ -14,7 +14,8 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/vnd.api+json" }
+                { "key": "Content-Type", "value": "application/vnd.api+json" },
+              { "key": "Accept", "value": "application/vnd.api+json" }
             ],
             "url": { "raw": "{{base_url}}/api/register", "host": ["{{base_url}}"], "path": ["api", "register"] },
             "body": {
@@ -28,7 +29,8 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/vnd.api+json" }
+              { "key": "Content-Type", "value": "application/vnd.api+json" },
+              { "key": "Accept", "value": "application/vnd.api+json" }
             ],
             "url": { "raw": "{{base_url}}/api/login", "host": ["{{base_url}}"], "path": ["api", "login"] },
             "body": {
@@ -42,7 +44,11 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" }
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+                { "key": "Content-Type", "value": "application/vnd.api+json" },
+              { "key": "Accept", "value": "application/vnd.api+json" }
+  
+            
             ],
             "url": { "raw": "{{base_url}}/api/logout", "host": ["{{base_url}}"], "path": ["api", "logout"] }
           }
@@ -57,7 +63,9 @@
           "request": {
             "method": "GET",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{admin_token}}" }
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+                { "key": "Content-Type", "value": "application/vnd.api+json" },
+              { "key": "Accept", "value": "application/vnd.api+json" }
             ],
             "url": { "raw": "{{base_url}}/api/programas", "host": ["{{base_url}}"], "path": ["api", "programas"] }
           }
@@ -68,12 +76,14 @@
             "method": "POST",
             "header": [
               { "key": "Authorization", "value": "Bearer {{admin_token}}" },
-              { "key": "Content-Type", "value": "application/vnd.api+json" }
+                { "key": "Content-Type", "value": "application/vnd.api+json" },
+              { "key": "Accept", "value": "application/vnd.api+json" }
+            
             ],
             "url": { "raw": "{{base_url}}/api/novo-programa", "host": ["{{base_url}}"], "path": ["api", "novo-programa"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nome\": \"Programa Desenvolvedores 2025\",\n  \"descricao\": \"Seleção para novos desenvolvedores\",\n  \"data_inicio\": \"2025-09-05\",\n  \"data_fim\": \"2025-09-20\",\n  \"estado\": \"ativo\"\n}"
+              "raw": "{\n  \"title\": \"Programa Desenvolvedores 2025\",\n    \"start_date\": \"2025-09-05\",\n  \"end_date\": \"2025-09-20\",\n  \"status\": \"ativo\"\n}"
             }
           }
         },
@@ -82,7 +92,9 @@
           "request": {
             "method": "GET",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{admin_token}}" }
+              { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+                { "key": "Content-Type", "value": "application/vnd.api+json" },
+              { "key": "Accept", "value": "application/vnd.api+json" }
             ],
             "url": { "raw": "{{base_url}}/api/programa/1", "host": ["{{base_url}}"], "path": ["api", "programa", "1"] }
           }
@@ -97,7 +109,9 @@
           "request": {
             "method": "GET",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" }
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/vnd.api+json" },
+              { "key": "Accept", "value": "application/vnd.api+json" }
             ],
             "url": { "raw": "{{base_url}}/api/candidaturas", "host": ["{{base_url}}"], "path": ["api", "candidaturas"] }
           }
@@ -108,7 +122,9 @@
             "method": "POST",
             "header": [
               { "key": "Authorization", "value": "Bearer {{token}}" },
-              { "key": "Content-Type", "value": "application/vnd.api+json" }
+              { "key": "Content-Type", "value": "application/vnd.api+json" },
+              { "key": "Accept", "value": "application/vnd.api+json" }
+              
             ],
             "url": { "raw": "{{base_url}}/api/candidaturas", "host": ["{{base_url}}"], "path": ["api", "candidaturas"] },
             "body": {
