@@ -99,7 +99,7 @@
         {
           "name": "Atualizar Programa",
           "request": {
-            "method": "PUT",
+            "method": "POST",
             "header": [
               { "key": "Authorization", "value": "Bearer {{admin_token}}" },
               { "key": "Content-Type", "value": "application/vnd.api+json" },
@@ -153,7 +153,7 @@
             "url": { "raw": "{{base_url}}/api/candidaturas", "host": ["{{base_url}}"], "path": ["api", "candidaturas"] },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"programa_id\": 1\n}"
+              "raw": "{\n  \"program_id\": 1\n}"
             }
           }
         }
