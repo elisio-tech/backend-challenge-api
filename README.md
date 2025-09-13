@@ -65,12 +65,16 @@ Siga estes passos para configurar e executar o projeto em sua máquina local.
 #### 1. Clonar o Repositório
 ```bash
 git clone git@github.com:elisio-tech/backend-challenge-api.git
+```
+
+```bash
 cd  backend-challenge-api
 ```
 
 #### 2. Configurar variaveis de ambiente
-	*Copie para .env:
-```env
+*Copie para .env:
+
+```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
