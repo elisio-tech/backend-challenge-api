@@ -14,12 +14,6 @@ class AuthController extends Controller
 {
     use HttpResponses;
 
-    /**
-     * Registro de novos usuários
-     * Endpoint: POST /register
-     * - Cria um novo usuário no sistema.
-     * - O campo `role` é opcional, caso não seja enviado assume "user".
-    */
     public function register(StoreUserRequest $request)
     {
         $user = User::create([
@@ -35,10 +29,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Autenticação de usuário (login)
-     * Endpoint: POST /login
-    */
     public function login(LoginUserRequest $request)
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
@@ -53,11 +43,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Logout do usuário autenticado
-     * Endpoint: POST /logout
-     * - Revoga apenas o token da sessão atual do usuário.
-    */
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();

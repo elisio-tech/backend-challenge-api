@@ -18,29 +18,24 @@ class ApplicationController extends Controller
         return Auth::user()->role !== 'admin';
     }
 
-    /**
-     * Lista todas candidaturas
-     * Endpoint GET /api/candidaturas
-     */
     public function index()
     {
         if ($this->isNotAuthorized()) {
             $this->error(null, 'Acesso negado. Apenas administradores podem visualizar candidaturas.', 403);
-        }
+	}
+
         $applications = Candidatura::with(['user', 'programa'])->get();
         return ApplicationResource::collection($applications);
     }
 
-    /**
-     * Cria uma nova candidatura
-     * Endpoint POST /api/candidaturas
-     */
+  
     public function store(CandidaturaRequest $request)
     {
         $user = $request->user();
         $today = now()->toDateString();
 
-        $program = Programa::find($request->program_id);
+	$program = Programa::find($request->program_id);
+
         if (!$program) {
             return $this->error(null, 'Programa não encontrado.', 404);
         }
@@ -52,8 +47,9 @@ class ApplicationController extends Controller
         // Verifica período válido
         if ($today < $program->start_date || $today > $program->end_date) {
             return $this->error(null, 'Fora do período de candidaturas.', 400);
-        }
-	// Evita candidaturas duplicadas
+	}
+
+        // Evita candidaturas duplicadas
         $hasApplied = $user->candidaturas()
             ->where('program_id', $program->id)
             ->exists();
@@ -61,12 +57,8 @@ class ApplicationController extends Controller
         if ($hasApplied) {
             return $this->error(null, 'Você já se candidatou a este programa.', 409);
         }
-	
-	try{
-	    $apply = $user->candidaturas()->create(['program_id' => $program->id,]);
-       	    return new ApplicationResource($apply->load(['user', 'programa']));
-	} catch(\Exception $e){
-	    return $this->error(null, "Ocorreu um erro, tente novamente" . $e->getMessage(), 400);	
-	}
+
+        $apply = $user->candidaturas()->create(['program_id' => $program->id,]);
+        return new ApplicationResource($apply->load(['user', 'programa']));
     }
 }
